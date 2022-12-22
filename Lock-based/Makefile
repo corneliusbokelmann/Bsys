@@ -8,7 +8,7 @@ OBJECTS=$(SOURCES:.c=.o)
 
 .PHONY: all clean
 
-all: counter sloppy_counter hand_list
+all: counter sloppy_counter hand_list btree
 
 %: %.c
 	$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@
@@ -23,6 +23,9 @@ sloppy_counter: sloppy_counter.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 hand_list: hand_list.o
+	$(CC) $(CFLAGS) $^ -o $@
+
+btree: btree.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
