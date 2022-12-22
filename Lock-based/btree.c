@@ -6,7 +6,7 @@
 
 #define NUM_THREADS 15
 
-void *insert_thread(void *arg) {
+void *worker(void *arg) {
   BTree *tree = (BTree*) arg;
   int value = rand() % 100;
 btree_insert(tree, value);
@@ -22,7 +22,7 @@ int main() {
 
   pthread_t threads[NUM_THREADS];
   for (int i = 0; i < NUM_THREADS; i++) {
-    pthread_create(&threads[i], NULL, insert_thread, &tree);
+    pthread_create(&threads[i], NULL, worker, &tree);
   }
 
   for (int i = 0; i < NUM_THREADS; i++) {
